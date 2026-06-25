@@ -16,12 +16,13 @@ RUN pip install --no-cache-dir \
     torch==2.10.0 torchaudio==2.10.0 \
     --index-url https://download.pytorch.org/whl/cu128
 
-# MisoTTS source — pip install . resolves deps from pyproject.toml
+# Install extras BEFORE MisoTTS so pip install . has final say on deps
+RUN pip install --no-cache-dir numpy huggingface_hub torchtune torchao runpod
+
+# MisoTTS source — pip install . runs last and ensures moshi/silentcipher are correct
 RUN git clone https://github.com/MisoLabsAI/MisoTTS.git /app/MisoTTS
 WORKDIR /app/MisoTTS
 RUN pip install --no-cache-dir .
-
-RUN pip install --no-cache-dir numpy huggingface_hub torchtune torchao runpod
 
 WORKDIR /app
 COPY handler.py .
