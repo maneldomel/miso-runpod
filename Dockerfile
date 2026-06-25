@@ -16,18 +16,10 @@ RUN pip install --no-cache-dir \
     torch==2.10.0 torchaudio==2.10.0 \
     --index-url https://download.pytorch.org/whl/cu128
 
-# MisoTTS source
+# MisoTTS source — pip install . resolves deps from pyproject.toml
 RUN git clone https://github.com/MisoLabsAI/MisoTTS.git /app/MisoTTS
 WORKDIR /app/MisoTTS
-RUN pip install --no-cache-dir \
-    tokenizers==0.21.0 \
-    transformers==4.49.0 \
-    huggingface_hub==0.28.1 \
-    moshi==0.2.2 \
-    "bitsandbytes==0.45.5" \
-    torchtune==0.4.0 \
-    torchao==0.9.0 \
-    "silentcipher @ git+https://github.com/SesameAILabs/silentcipher@d46d7d0893a583d8968ab3a6626e2289faec9152"
+RUN pip install --no-cache-dir .
 
 RUN pip install --no-cache-dir runpod
 
