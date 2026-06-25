@@ -21,7 +21,7 @@ RUN git clone https://github.com/MisoLabsAI/MisoTTS.git /app/MisoTTS
 WORKDIR /app/MisoTTS
 RUN pip install --no-cache-dir .
 
-RUN pip install --no-cache-dir huggingface_hub torchtune torchao runpod
+RUN pip install --no-cache-dir numpy huggingface_hub torchtune torchao runpod
 
 WORKDIR /app
 COPY handler.py .
