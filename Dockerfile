@@ -2,7 +2,8 @@ FROM nvidia/cuda:12.8.1-cudnn-devel-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PYTHONUNBUFFERED=1 \
-    HF_HUB_CACHE=/runpod-volume/hf_cache
+    HF_HUB_CACHE=/runpod-volume/hf_cache \
+    PYTHONPATH=/app/MisoTTS
 
 RUN apt-get update && apt-get install -y \
     python3.10 python3.10-dev python3-pip git curl \
@@ -18,7 +19,6 @@ RUN pip install --no-cache-dir \
 # MisoTTS source
 RUN git clone https://github.com/MisoLabsAI/MisoTTS.git /app/MisoTTS
 WORKDIR /app/MisoTTS
-RUN pip install --no-cache-dir -e . --no-deps
 RUN pip install --no-cache-dir \
     tokenizers==0.21.0 \
     transformers==4.49.0 \
