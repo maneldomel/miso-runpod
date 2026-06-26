@@ -16,12 +16,14 @@ RUN pip install --no-cache-dir \
     torch==2.11.0 torchaudio==2.11.0 \
     --index-url https://download.pytorch.org/whl/cu128
 
-# Extras — versões confirmadas no pod funcional
+# Extras — versões confirmadas no pod funcional + moshi/silentcipher que o pyproject.toml não lista
 RUN pip install --no-cache-dir \
     numpy \
     huggingface_hub==0.28.1 \
     torchtune==0.6.1 \
     torchao==0.17.0 \
+    moshi==0.2.2 \
+    silentcipher \
     runpod
 
 # MisoTTS — instala por último para moshi==0.2.2 e silentcipher==1.0.5 não serem sobrescritos
